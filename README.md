@@ -22,19 +22,13 @@ Google Antigravity and Gemini CLI environments render chat outputs inside a defa
 
 ### Visual Comparison
 
-```text
-❌ DEFAULT LTR CHAT (Scrambled & Hard to Read):
-------------------------------------------------------------
-پروژه با موفقیت ایجاد شد src/app.ts مسیر در فایل
-.استفاده کنید POST برای ارسال درخواست‌ها از متد
-
-✅ WITH ANTIGRAVITY RTL (Pixel-Perfect & Isolated):
-------------------------------------------------------------
-┌──────────────────────────────────────────────────────────┐
-│  فایل در مسیر src/app.ts با موفقیت در پروژه ایجاد شد.   │
-│  برای ارسال درخواست‌ها از متد POST استفاده کنید.         │
-└──────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/comparison-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="docs/assets/comparison-light.png">
+    <img alt="Visual Comparison: Default LTR vs Antigravity RTL Kit" src="docs/assets/comparison-dark.png" width="700">
+  </picture>
+</p>
 
 ---
 
