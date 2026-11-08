@@ -30,6 +30,7 @@ Whenever generating **Persian (Farsi)** or **Arabic** content for the user, **al
      - Text color: strictly `text-[var(--foreground)]`. Never use `text-[var(--muted-foreground)]` for readable prose or lists.
    - **Container:** `<div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">`
    - **BiDi Token Isolation:** Wrap inline English technical terms, paths, method names, and slash commands in `<span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">...</span>`.
+   - **Interactive Quote & Copy Helper:** Because sandboxed `<agent-embed>` iframes isolate text from the host editor's selection listener, cards should include a copy button or floating quote button (copying selected text with `> ` markdown prefix to clipboard with `preventScroll: true` for easy <kbd>Cmd</kbd>+<kbd>V</kbd> pasting).
    - **Respect the 500px Viewport Limit:** Keep cards under `450px` tall so no internal scrollbar appears. If an answer has multiple sections (e.g., Analysis + Action Items), split into 2 compact `<agent-embed>` cards sequentially instead of spilling raw text into chat.
 
 3. **System Artifact Cards (`ArtifactMetadata.Summary`):**

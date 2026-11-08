@@ -16,42 +16,149 @@
       unicode-bidi: isolate;
       display: inline-block;
     }
+    ::selection {
+      background-color: rgba(59, 130, 246, 0.35);
+      color: inherit;
+    }
   </style>
 </head>
-<body class="bg-transparent text-[var(--foreground)] antialiased p-2">
+<body class="bg-transparent text-[var(--foreground)] antialiased p-2 relative select-text">
   <!-- Card Container: fits comfortably within Antigravity's 500px inline iframe viewport without scrollbars -->
-  <div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">
+  <div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9] relative">
     
+    <!-- Floating Quote Button on Text Selection -->
+    <button id="quote-btn" class="hidden absolute z-50 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-[12px] font-bold px-3 py-1 rounded-full shadow-xl border border-white/30 transition-transform duration-75 flex items-center gap-1.5 cursor-pointer">
+      <span>💬 نقل‌قول</span>
+    </button>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="hidden absolute top-3 left-1/2 -translate-x-1/2 z-50 bg-emerald-600 text-white text-[13px] font-medium px-4 py-1.5 rounded-lg shadow-lg border border-emerald-400/30 transition-all duration-200">
+      ✓ نقل‌قول کپی شد! در چت پیست کنید.
+    </div>
+
     <!-- Header -->
     <div class="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border)]">
       <div class="flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
         <h3 class="text-[17px] font-semibold text-[var(--foreground)] m-0">عنوان کارت پاسخ</h3>
       </div>
-      <span class="text-[12px] text-[var(--muted-foreground)] px-2 py-0.5 rounded bg-[var(--muted)]">وضعیت: موفق</span>
+      <div class="flex items-center gap-2">
+        <button onclick="copyCardContent()" title="کپی متن پیام" class="px-2 py-0.5 text-[12px] rounded border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--muted)] transition-colors cursor-pointer flex items-center gap-1">
+          <span>📋 کپی</span>
+        </button>
+        <span class="text-[12px] text-[var(--muted-foreground)] px-2 py-0.5 rounded bg-[var(--muted)]">وضعیت: موفق</span>
+      </div>
     </div>
 
     <!-- Main Content -->
-    <p class="mb-3 text-[15px] text-[var(--foreground)] leading-[1.9]">
-      متن اصلی پیام به زبان فارسی با فونت باکیفیت و خوانا. عبارات انگلیسی یا کدهای فنی مانند
-      <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">src/main.ts</span>
-      یا اصطلاحاتی چون
-      <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">API Endpoint</span>
-      به‌صورت کامل ایزوله شده و ترتیب جملات را برهم نمی‌زنند.
-    </p>
+    <div id="card-content">
+      <p class="mb-3 text-[15px] text-[var(--foreground)] leading-[1.9]">
+        متن اصلی پیام به زبان فارسی با فونت باکیفیت و خوانا. عبارات انگلیسی یا کدهای فنی مانند
+        <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">src/main.ts</span>
+        یا اصطلاحاتی چون
+        <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">API Endpoint</span>
+        به‌صورت کامل ایزوله شده و ترتیب جملات را برهم نمی‌زنند.
+      </p>
 
-    <!-- Checklist / Action Items -->
-    <ul class="space-y-2 mb-3 pr-4 list-disc text-[15px] text-[var(--foreground)] marker:text-emerald-500">
-      <li>بررسی تنظیمات و پارامترهای ارسالی در <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">config.json</span></li>
-      <li>اجرای موفقیت‌آمیز تست‌های اعتبارسنجی واحد</li>
-    </ul>
+      <!-- Checklist / Action Items -->
+      <ul class="space-y-2 mb-3 pr-4 list-disc text-[15px] text-[var(--foreground)] marker:text-emerald-500">
+        <li>بررسی تنظیمات و پارامترهای ارسالی در <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">config.json</span></li>
+        <li>اجرای موفقیت‌آمیز تست‌های اعتبارسنجی واحد</li>
+      </ul>
+    </div>
 
     <!-- Footer Note -->
     <div class="pt-2 text-[13px] text-[var(--muted-foreground)] border-t border-[var(--border)] flex items-center justify-between">
       <span>تولید شده توسط دستیار هوشمند</span>
-      <span dir="ltr" class="ltr-pill text-[11px] px-1.5 py-0.5 rounded bg-[var(--muted)] text-[var(--muted-foreground)]">Antigravity RTL</span>
+      <span dir="ltr" class="ltr-pill text-[11px] px-1.5 py-0.5 rounded bg-[var(--muted)] text-[var(--muted-foreground)] font-mono">Antigravity RTL</span>
     </div>
 
   </div>
+
+  <!-- Zero-Jump Interactive Quote & Copy Script -->
+  <script>
+    const quoteBtn = document.getElementById('quote-btn');
+    const toast = document.getElementById('toast');
+    let capturedText = '';
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2400);
+    }
+
+    function safeCopy(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute';
+      ta.style.left = '0';
+      ta.style.top = `${window.scrollY || document.documentElement.scrollTop || 0}px`;
+      ta.style.width = '1px';
+      ta.style.height = '1px';
+      ta.style.padding = '0';
+      ta.style.border = 'none';
+      ta.style.outline = 'none';
+      ta.style.background = 'transparent';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus({ preventScroll: true });
+      ta.select();
+      ta.setSelectionRange(0, 999999);
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+    }
+
+    quoteBtn.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    function checkSelection() {
+      const sel = window.getSelection();
+      const str = sel ? sel.toString().trim() : '';
+      if (str.length > 0 && sel.rangeCount > 0) {
+        capturedText = str;
+        const range = sel.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        const top = Math.max(8, rect.top + window.scrollY - 38);
+        const left = Math.min(Math.max(10, rect.left + (rect.width / 2) - 45), window.innerWidth - 100);
+        quoteBtn.style.top = `${top}px`;
+        quoteBtn.style.left = `${left}px`;
+        quoteBtn.classList.remove('hidden');
+      } else {
+        quoteBtn.classList.add('hidden');
+      }
+    }
+
+    document.addEventListener('mouseup', checkSelection);
+    document.addEventListener('keyup', checkSelection);
+
+    quoteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (capturedText) {
+        const clean = capturedText.replace(/\r\n/g, '\n').trim();
+        const quoteFormatted = clean.split('\n').map(l => '> ' + l).join('\n') + '\n\n';
+        safeCopy(quoteFormatted);
+        showToast('✓ نقل‌قول کپی شد! در چت پیست کنید.');
+        quoteBtn.classList.add('hidden');
+      }
+    });
+
+    function copyCardContent() {
+      const content = document.getElementById('card-content').innerText;
+      safeCopy(content);
+      showToast('✓ کل متن پیام کپی شد!');
+    }
+  </script>
 </body>
 </html>

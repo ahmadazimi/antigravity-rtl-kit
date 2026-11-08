@@ -125,7 +125,7 @@ While systems will fall back to `Tahoma` or `system-ui` gracefully, installing t
 
 ---
 
-## 🧠 How It Works: The 4 Pillars
+## 🧠 How It Works: The 5 Pillars
 
 | Pillar | Implementation | Why It Matters |
 | :--- | :--- | :--- |
@@ -133,6 +133,7 @@ While systems will fall back to `Tahoma` or `system-ui` gracefully, installing t
 | **2. 15px Typography** | `text-[15px] leading-[1.9]` | Antigravity defaults to `12px` (`text-xs`), which is illegible for Arabic-script characters. `15px` provides optimal legibility. |
 | **3. BiDi Token Isolation** | `unicode-bidi: isolate; direction: ltr;` | Prevents English terms, file paths, and slash commands from scrambling Persian word order. |
 | **4. Strict High Contrast** | `text-[var(--foreground)]` | Bypasses `--muted-foreground` which renders too dim on dark theme backgrounds. |
+| **5. Zero-Jump Quote & Copy** | `Selection Tooltip + Clipboard API` | Bridges iframe sandbox isolation so users can highlight text and quote it (`> ...`) directly to chat. |
 
 ---
 
@@ -173,6 +174,9 @@ To also make your **user input textarea** type right-to-left in the IDE, pair th
 ### Why does the rule instruct `ArtifactMetadata.Summary` to stay in English?
 Antigravity's system artifact card drawer (the collapsible card at the bottom of agent messages) is rendered natively in a rigid LTR container. Writing Persian text in `ArtifactMetadata.Summary` scrambles parenthesized acronyms and paths. Writing a concise English summary keeps the system card neat, while the actual report/card opens in gorgeous full-native RTL.
 
+### How do I quote text from an RTL card?
+Because `<agent-embed>` renders inside a sandboxed iframe, the host editor's selection listener cannot directly capture text selected inside the card. Our inline boilerplates include an interactive floating **💬 Quote button**: simply highlight any word or sentence inside the card, click Quote, and press <kbd>Cmd</kbd>+<kbd>V</kbd> (or <kbd>Ctrl</kbd>+<kbd>V</kbd>) in the chat textarea to quote it with standard `> ` Markdown formatting with zero scroll jumps.
+
 ### Are external CDNs allowed?
 No. Antigravity enforces strict CSP blocking of `fonts.googleapis.com` or arbitrary CDN scripts. This kit only uses the pre-approved Tailwind CDN (`https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js`) and relies entirely on local system font stacks.
 
@@ -205,6 +209,7 @@ rm -f .agents/rules/bidi-rtl.md
 1. **به‌هم‌ریختگی متن دوزبانه (BiDi):** ترکیب کلمات انگلیسی، مسیر فایل‌ها و اصطلاحات تخصصی با متن فارسی دیگر باعث جابه‌جایی و وارونگی جملات نخواهد شد.
 2. **فونت ناخوانا در حالت تاریک:** جایگزینی فونت‌های پیش‌فرض باریک و ریز سیستم‌عامل با چینش فونت استاندارد **وزیرمتن (Vazirmatn)** و اندازه بهینه `15px`.
 3. **رعایت محدودیت‌های امنیتی (CSP):** کلیه قالب‌ها بدون نیاز به لود فونت از سرورهای گوگل و با رعایت کامل امنیت داخلی آنتی‌گرویتی طراحی شده‌اند.
+4. **قابلیت نقل‌قول (Quote) و کپی آسان:** حل مشکل ایزوله بودن آی‌فریم با افزودن دکمه شناور نقل‌قول؛ کافیست هر کلمه یا جمله را هایلایت کنید تا به فرمت آماده نقل‌قول (`> ...`) بدون پرش صفحه در حافظه کپی شود.
 
 ### نصب سریع (تنها با یک دستور در ترمینال):
 ```bash
