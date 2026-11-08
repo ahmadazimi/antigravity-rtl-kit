@@ -1,4 +1,4 @@
-# Antigravity RTL Persian / Arabic Display Kit 🇮🇷 🇸🇦
+# Antigravity RTL Kit 🇮🇷 🇸🇦
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Antigravity](https://img.shields.io/badge/Antigravity-2.0%20%7C%20IDE-6366f1.svg)](https://antigravity.google)
@@ -43,7 +43,7 @@ Google Antigravity and Gemini CLI environments render chat outputs inside a defa
 Install the global rule across all your Antigravity workspaces with a single command:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/m-ahm-adi/antigravity-rtl-persian/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/m-ahm-adi/antigravity-rtl-kit/main/install.sh | bash
 ```
 
 *Supports macOS and Linux.*
@@ -53,7 +53,7 @@ curl -fsSL https://raw.githubusercontent.com/m-ahm-adi/antigravity-rtl-persian/m
 ## 📦 What's Inside
 
 ```text
-antigravity-rtl-persian/
+antigravity-rtl-kit/
 ├── README.md                      # Comprehensive bilingual documentation
 ├── LICENSE                        # MIT License
 ├── install.sh                     # Idempotent Bash installer (macOS & Linux)
@@ -187,7 +187,7 @@ rm -f .agents/rules/persian-rtl.md
 
 # راهنمای فارسی (Persian Documentation)
 
-### بسته افزونه نمایش راست‌به‌چپ (RTL) زبان فارسی در گوگل آنتی‌گرویتی (Antigravity)
+### بسته ابزار نمایش راست‌به‌چپ (Antigravity RTL Kit)
 
 این مخزن راهکاری جامع، استاندارد و بدون نیاز به دستکاری کدهای هسته برای حل مشکل نمایش متون فارسی در محیط هوش مصنوعی **Google Antigravity** و **Gemini CLI** ارائه می‌دهد.
 
@@ -198,7 +198,7 @@ rm -f .agents/rules/persian-rtl.md
 
 ### نصب سریع (تنها با یک دستور در ترمینال):
 ```bash
-curl -fsSL https://raw.githubusercontent.com/m-ahm-adi/antigravity-rtl-persian/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/m-ahm-adi/antigravity-rtl-kit/main/install.sh | bash
 ```
 
 ### نصب دستی:
