@@ -66,6 +66,8 @@ antigravity-rtl-kit/
 ├── LICENSE                        # MIT License
 ├── install.sh                     # Idempotent Bash installer (macOS & Linux)
 ├── uninstall.sh                   # Clean uninstaller
+├── docs/
+│   └── assets/                    # Showcase screenshots (dark & light themes)
 ├── rules/
 │   └── persian-rtl.md             # The core always_on Antigravity rule
 ├── templates/
