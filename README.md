@@ -22,13 +22,27 @@ Google Antigravity and Gemini CLI environments render chat outputs inside a defa
 
 ### Visual Comparison
 
+<!-- GitHub Native Theme Auto-Switch: displays Dark in dark mode, Light in light mode -->
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/comparison-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="docs/assets/comparison-light.png">
-    <img alt="Visual Comparison: Default LTR vs Antigravity RTL Kit" src="docs/assets/comparison-dark.png" width="700">
-  </picture>
+  <img src="docs/assets/comparison-dark.png#gh-dark-mode-only" alt="Visual Comparison (Dark Mode)" width="750">
+  <img src="docs/assets/comparison-light.png#gh-light-mode-only" alt="Visual Comparison (Light Mode)" width="750">
 </p>
+
+<details>
+<summary><b>🔍 View Both Themes (Dark & Light)</b></summary>
+<br>
+
+#### 🌙 Dark Theme
+<p align="center">
+  <img src="docs/assets/comparison-dark.png" alt="Visual Comparison - Dark Theme" width="750">
+</p>
+
+#### ☀️ Light Theme
+<p align="center">
+  <img src="docs/assets/comparison-light.png" alt="Visual Comparison - Light Theme" width="750">
+</p>
+
+</details>
 
 ---
 
