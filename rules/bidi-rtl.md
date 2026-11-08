@@ -31,10 +31,78 @@ Whenever generating **Persian (Farsi)** or **Arabic** content for the user, **al
    - **Container & Padding:** Always use `<body class="bg-transparent text-[var(--foreground)] antialiased p-2 pb-6">` with bottom padding `pb-6` (to prevent clipping the bottom border). Wrap content in `<div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">`.
    - **BiDi Token Isolation:** Wrap inline English technical terms, paths, method names, and slash commands in `<span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">...</span>`.
    - **Interactive Quote & Copy Helper (Mandatory Implementation):**
-     Inside sandboxed `<agent-embed>` iframes, `navigator.clipboard.writeText` is blocked by iframe security policy. You **MUST** always include the working floating quote button and robust copy script (with `document.execCommand('copy')` fallback and `preventScroll: true`):
-     - **HTML elements:** Add `<button id="quote-btn" class="hidden absolute z-50 bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold px-3 py-1 rounded-full shadow-xl border border-white/30 cursor-pointer">💬 نقل‌قول</button>` and a header copy button `<button type="button" onclick="copyCard(this)" class="px-2 py-0.5 text-[12px] rounded border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--muted)]">📋 کپی</button>`.
+     Inside sandboxed `<agent-embed>` iframes, `navigator.clipboard.writeText` is blocked by iframe security policy. You **MUST** always include the working floating quote button and robust copy script with synchronous `document.execCommand('copy')` fallback and `preventScroll: true`.
      - **Mousedown lock:** Always add `quoteBtn.addEventListener('mousedown', e => { e.preventDefault(); e.stopPropagation(); });` so clicking the button never deselects the highlighted text.
-     - **Safe zero-jump copy:** Wrap text in `> ` blockquotes and copy using a temporary textarea (`position: absolute; left: 0; top: window.scrollY; opacity: 0;`) with `ta.focus({ preventScroll: true }); ta.select(); document.execCommand('copy');`. Never rely on `navigator.clipboard.writeText` alone as it silently fails in sandboxed iframes.
+     - **Safe zero-jump copy:** Wrap text in `> ` blockquotes and copy using a temporary textarea (`position: absolute; left: 0; top: (window.scrollY || 0) + 'px'; opacity: 0;`) with `ta.focus({ preventScroll: true }); ta.select(); document.execCommand('copy');`.
+     - **Custom Copy Buttons (e.g., Copy English Prompt / Code):** **NEVER** use `navigator.clipboard.writeText` alone as it silently fails in sandboxed iframes. Always use `safeCopy(text, btn, successLabel)`.
+     - **Exact Mandatory HTML & Script Pattern:**
+       ```html
+       <button id="quote-btn" class="hidden absolute z-50 bg-blue-600 hover:bg-blue-700 text-white text-[12px] font-bold px-3 py-1 rounded-full shadow-xl border border-white/30 cursor-pointer">💬 نقل‌قول</button>
+       <button type="button" onclick="copyCard(this)" class="px-2 py-0.5 text-[12px] rounded border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--muted)] cursor-pointer">📋 کپی</button>
+
+       <script>
+         function safeCopy(text, btn, successLabel) {
+           var ta = document.createElement('textarea');
+           ta.value = text;
+           ta.setAttribute('readonly', '');
+           ta.style.position = 'absolute';
+           ta.style.left = '0';
+           ta.style.top = (window.scrollY || 0) + 'px';
+           ta.style.opacity = '0';
+           document.body.appendChild(ta);
+           ta.focus({ preventScroll: true });
+           ta.select();
+           ta.setSelectionRange(0, 999999);
+           var ok = false;
+           try { ok = document.execCommand('copy'); } catch(e) {}
+           document.body.removeChild(ta);
+           if (!ok && navigator.clipboard && window.isSecureContext) {
+             navigator.clipboard.writeText(text).catch(function() {});
+           }
+           if (btn) {
+             var orig = btn.textContent;
+             btn.textContent = successLabel || '✓ کپی شد';
+             setTimeout(function() { btn.textContent = orig; }, 1600);
+           }
+         }
+
+         var quoteBtn = document.getElementById('quote-btn');
+         var selectedText = '';
+         if (quoteBtn) {
+           quoteBtn.addEventListener('mousedown', function(e) { e.preventDefault(); e.stopPropagation(); });
+           quoteBtn.addEventListener('click', function(e) {
+             e.preventDefault();
+             if (!selectedText) return;
+             var quoted = selectedText.split(/\\r?\\n/).map(function(l) { return '> ' + l; }).join('\\n');
+             safeCopy(quoted, quoteBtn, '✓ کپی شد');
+             setTimeout(function() { quoteBtn.classList.add('hidden'); }, 900);
+           });
+         }
+
+         function updateSelection() {
+           var sel = window.getSelection();
+           var text = sel ? sel.toString().trim() : '';
+           if (text.length > 0 && sel.rangeCount > 0 && quoteBtn) {
+             selectedText = text;
+             var rect = sel.getRangeAt(0).getBoundingClientRect();
+             quoteBtn.style.top = Math.max(4, rect.top + window.scrollY - 36) + 'px';
+             quoteBtn.style.left = Math.max(8, rect.left + window.scrollX) + 'px';
+             quoteBtn.classList.remove('hidden');
+           } else if (quoteBtn) {
+             quoteBtn.classList.add('hidden');
+           }
+         }
+         document.addEventListener('selectionchange', updateSelection);
+         document.addEventListener('mouseup', updateSelection);
+         document.addEventListener('keyup', updateSelection);
+
+         function copyCard(btn) {
+           var root = document.querySelector('ul') || document.querySelector('[dir=\"rtl\"]');
+           var quoted = root ? root.innerText.trim().split(/\\r?\\n/).filter(Boolean).map(function(l) { return '> ' + l; }).join('\\n') : '';
+           safeCopy(quoted, btn, '✓ کپی شد');
+         }
+       </script>
+       ```
    - **Strict 400px Height Ceiling (Prevent 500px Iframe Overflow & Clipped Borders):**
      - Antigravity hard-caps inline `<agent-embed>` viewport height at **500px**. If content exceeds ~450px, the bottom border gets clipped and an ugly internal scrollbar appears.
      - **Rule of Thumb (Max 3 Items / 120 Words per Card):** Persian/Arabic prose at 15px with `1.9` line-height takes ~80–90px per detailed item.
