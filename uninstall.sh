@@ -13,8 +13,10 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-GLOBAL_FILE="${HOME}/.gemini/config/rules/persian-rtl.md"
-WORKSPACE_FILE="./.agents/rules/persian-rtl.md"
+GLOBAL_FILE="${HOME}/.gemini/config/rules/bidi-rtl.md"
+WORKSPACE_FILE="./.agents/rules/bidi-rtl.md"
+LEGACY_GLOBAL_FILE="${HOME}/.gemini/config/rules/persian-rtl.md"
+LEGACY_WORKSPACE_FILE="./.agents/rules/persian-rtl.md"
 
 MODE="both"
 
@@ -32,8 +34,8 @@ while [[ $# -gt 0 ]]; do
       echo "Usage: $0 [OPTIONS]"
       echo ""
       echo "Options:"
-      echo "  -g, --global     Remove global rule (~/.gemini/config/rules/persian-rtl.md)"
-      echo "  -w, --workspace  Remove workspace rule (./.agents/rules/persian-rtl.md)"
+      echo "  -g, --global     Remove global rule (~/.gemini/config/rules/bidi-rtl.md)"
+      echo "  -w, --workspace  Remove workspace rule (./.agents/rules/bidi-rtl.md)"
       echo "  -h, --help       Show this help message"
       exit 0
       ;;
@@ -60,11 +62,13 @@ remove_file() {
 }
 
 if [ "$MODE" = "global" ] || [ "$MODE" = "both" ]; then
-  remove_file "$GLOBAL_FILE" "Global rule"
+  remove_file "$GLOBAL_FILE" "Global rule (bidi-rtl.md)"
+  remove_file "$LEGACY_GLOBAL_FILE" "Legacy global rule (persian-rtl.md)"
 fi
 
 if [ "$MODE" = "workspace" ] || [ "$MODE" = "both" ]; then
-  remove_file "$WORKSPACE_FILE" "Workspace rule"
+  remove_file "$WORKSPACE_FILE" "Workspace rule (bidi-rtl.md)"
+  remove_file "$LEGACY_WORKSPACE_FILE" "Legacy workspace rule (persian-rtl.md)"
 fi
 
 echo ""

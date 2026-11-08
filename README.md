@@ -69,7 +69,7 @@ antigravity-rtl-kit/
 ├── docs/
 │   └── assets/                    # Showcase screenshots (dark & light themes)
 ├── rules/
-│   └── persian-rtl.md             # The core always_on Antigravity rule
+│   └── bidi-rtl.md                # Unified core always_on Antigravity rule (Persian & Arabic)
 ├── templates/
 │   ├── inline-card-boilerplate.html   # Compact (<450px) chat card boilerplate
 │   └── full-report-boilerplate.html   # Standalone full-page report boilerplate
@@ -91,7 +91,7 @@ Applies automatically to **all** your Antigravity and Gemini agent conversations
 
 ```bash
 mkdir -p ~/.gemini/config/rules
-cp rules/persian-rtl.md ~/.gemini/config/rules/persian-rtl.md
+cp rules/bidi-rtl.md ~/.gemini/config/rules/bidi-rtl.md
 ```
 
 ### Option B: Workspace-Only Installation
@@ -99,7 +99,7 @@ Applies only to the current project:
 
 ```bash
 mkdir -p .agents/rules
-cp rules/persian-rtl.md .agents/rules/persian-rtl.md
+cp rules/bidi-rtl.md .agents/rules/bidi-rtl.md
 ```
 
 ---
@@ -152,7 +152,7 @@ Example output:
 [2/4] Typography & Font Verification:
   ✓ Vazirmatn is installed: Homebrew Cask (font-vazirmatn)
 [3/4] Antigravity Rules Check:
-  ✓ Global Rule Active & Valid: ~/.gemini/config/rules/persian-rtl.md
+  ✓ Global Rule Active & Valid: ~/.gemini/config/rules/bidi-rtl.md
 [4/4] Environment Check:
   ✓ Antigravity App Data directory detected: ~/.gemini/antigravity
 
@@ -187,8 +187,8 @@ To remove the rules cleanly at any time:
 ./uninstall.sh
 
 # Or remove manually:
-rm -f ~/.gemini/config/rules/persian-rtl.md
-rm -f .agents/rules/persian-rtl.md
+rm -f ~/.gemini/config/rules/bidi-rtl.md
+rm -f .agents/rules/bidi-rtl.md
 ```
 
 ---
@@ -212,10 +212,10 @@ curl -fsSL https://raw.githubusercontent.com/ahmadazimi/antigravity-rtl-kit/main
 ```
 
 ### نصب دستی:
-فایل قانون `rules/persian-rtl.md` را در مسیر سراسری قوانین آنتی‌گرویتی کپی کنید:
+فایل قانون `rules/bidi-rtl.md` را در مسیر سراسری قوانین آنتی‌گرویتی کپی کنید:
 ```bash
 mkdir -p ~/.gemini/config/rules
-cp rules/persian-rtl.md ~/.gemini/config/rules/persian-rtl.md
+cp rules/bidi-rtl.md ~/.gemini/config/rules/bidi-rtl.md
 ```
 
 پس از کپی این فایل، ایجنت هوش مصنوعی در تمامی گفتگوها و پروژه‌های شما به‌صورت خودکار پاسخ‌های فارسی را داخل کارت‌های شکیل و خوانای راست‌به‌چپ ارائه خواهد کرد.

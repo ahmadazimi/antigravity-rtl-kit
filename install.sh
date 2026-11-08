@@ -35,7 +35,7 @@ print_banner
 
 # Determine execution directory or remote curl execution
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || echo "")"
-LOCAL_RULE_FILE="${SCRIPT_DIR}/rules/persian-rtl.md"
+LOCAL_RULE_FILE="${SCRIPT_DIR}/rules/bidi-rtl.md"
 
 # Parse CLI arguments
 INSTALL_MODE="global"
@@ -82,19 +82,25 @@ fi
 # Step 2: Determine Target Path
 if [ "$INSTALL_MODE" = "workspace" ]; then
   TARGET_DIR="./.agents/rules"
-  TARGET_FILE="${TARGET_DIR}/persian-rtl.md"
+  TARGET_FILE="${TARGET_DIR}/bidi-rtl.md"
   echo -e "${BLUE}➜ Installation scope:${NC} ${BOLD}Workspace${NC} (${TARGET_FILE})"
 else
   TARGET_DIR="${HOME}/.gemini/config/rules"
-  TARGET_FILE="${TARGET_DIR}/persian-rtl.md"
+  TARGET_FILE="${TARGET_DIR}/bidi-rtl.md"
   echo -e "${BLUE}➜ Installation scope:${NC} ${BOLD}Global${NC} (${TARGET_FILE})"
 fi
 
 # Create target directory
 mkdir -p "$TARGET_DIR"
 
+# Clean up legacy persian-rtl.md if present
+if [ -f "${TARGET_DIR}/persian-rtl.md" ]; then
+  rm -f "${TARGET_DIR}/persian-rtl.md"
+  echo -e "  ${YELLOW}ℹ Removed legacy persian-rtl.md to avoid duplicate rules.${NC}"
+fi
+
 # Step 3: Install Rule File
-echo -e "${CYAN}➜ Installing Persian RTL rule file...${NC}"
+echo -e "${CYAN}➜ Installing BiDi RTL (Persian & Arabic) rule file...${NC}"
 
 if [ -f "$LOCAL_RULE_FILE" ]; then
   cp "$LOCAL_RULE_FILE" "$TARGET_FILE"
@@ -102,9 +108,9 @@ else
   # Running via curl / remote pipe
   echo -e "  Fetching rule from GitHub repository..."
   if command -v curl >/dev/null 2>&1; then
-    curl -fsSL "${RAW_GITHUB_BASE}/rules/persian-rtl.md" -o "$TARGET_FILE"
+    curl -fsSL "${RAW_GITHUB_BASE}/rules/bidi-rtl.md" -o "$TARGET_FILE"
   elif command -v wget >/dev/null 2>&1; then
-    wget -qO "$TARGET_FILE" "${RAW_GITHUB_BASE}/rules/persian-rtl.md"
+    wget -qO "$TARGET_FILE" "${RAW_GITHUB_BASE}/rules/bidi-rtl.md"
   else
     echo -e "${RED}Error: Neither curl nor wget found. Unable to fetch rule file.${NC}"
     exit 1

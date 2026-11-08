@@ -59,8 +59,9 @@ fi
 
 # 3. Rule Files Check
 echo -e "\n${BLUE}[3/4] Antigravity Rules Check:${NC}"
-GLOBAL_RULE="${HOME}/.gemini/config/rules/persian-rtl.md"
-WORKSPACE_RULE="./.agents/rules/persian-rtl.md"
+GLOBAL_RULE="${HOME}/.gemini/config/rules/bidi-rtl.md"
+WORKSPACE_RULE="./.agents/rules/bidi-rtl.md"
+LEGACY_GLOBAL_RULE="${HOME}/.gemini/config/rules/persian-rtl.md"
 
 RULE_ACTIVE=false
 
@@ -81,8 +82,12 @@ check_rule() {
   fi
 }
 
-check_rule "$GLOBAL_RULE" "Global"
-check_rule "$WORKSPACE_RULE" "Workspace"
+check_rule "$GLOBAL_RULE" "Global (bidi-rtl.md)"
+check_rule "$WORKSPACE_RULE" "Workspace (bidi-rtl.md)"
+
+if [ -f "$LEGACY_GLOBAL_RULE" ]; then
+  echo -e "  ${YELLOW}ℹ Notice: Legacy persian-rtl.md found. Run ./install.sh to migrate to bidi-rtl.md.${NC}"
+fi
 
 if [ "$RULE_ACTIVE" = false ]; then
   echo -e "  ${RED}✗ No active RTL rule found.${NC}"
