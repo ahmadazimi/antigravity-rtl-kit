@@ -43,7 +43,7 @@ Google Antigravity and Gemini CLI environments render chat outputs inside a defa
 Install the global rule across all your Antigravity workspaces with a single command:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/m-ahm-adi/antigravity-rtl-kit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ahmadazimi/antigravity-rtl-kit/main/install.sh | bash
 ```
 
 *Supports macOS and Linux.*
@@ -198,7 +198,7 @@ rm -f .agents/rules/persian-rtl.md
 
 ### نصب سریع (تنها با یک دستور در ترمینال):
 ```bash
-curl -fsSL https://raw.githubusercontent.com/m-ahm-adi/antigravity-rtl-kit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ahmadazimi/antigravity-rtl-kit/main/install.sh | bash
 ```
 
 ### نصب دستی:

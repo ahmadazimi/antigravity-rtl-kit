@@ -15,7 +15,7 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
 
-RAW_GITHUB_BASE="https://raw.githubusercontent.com/m-ahm-adi/antigravity-rtl-kit/main"
+RAW_GITHUB_BASE="https://raw.githubusercontent.com/ahmadazimi/antigravity-rtl-kit/main"
 
 print_banner() {
   cat << "EOF"
