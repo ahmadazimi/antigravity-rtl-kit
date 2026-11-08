@@ -1,4 +1,4 @@
-# Antigravity RTL Kit 🇮🇷 🇸🇦
+# Antigravity RTL Kit
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Antigravity](https://img.shields.io/badge/Antigravity-2.0%20%7C%20IDE-6366f1.svg)](https://antigravity.google)
