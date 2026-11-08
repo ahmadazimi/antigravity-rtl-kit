@@ -28,10 +28,13 @@ Whenever generating **Persian (Farsi)** or **Arabic** content for the user, **al
      - Secondary helper text: `text-[14px] leading-[1.8]`.
      - Card headers: `text-[17px]`–`text-lg` font-bold.
      - Text color: strictly `text-[var(--foreground)]`. Never use `text-[var(--muted-foreground)]` for readable prose or lists.
-   - **Container:** `<div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">`
+   - **Container & Padding:** Always use `<body class="bg-transparent text-[var(--foreground)] antialiased p-2 pb-6">` with bottom padding `pb-6` (to prevent clipping the bottom border). Wrap content in `<div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">`.
    - **BiDi Token Isolation:** Wrap inline English technical terms, paths, method names, and slash commands in `<span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">...</span>`.
    - **Interactive Quote & Copy Helper:** Because sandboxed `<agent-embed>` iframes isolate text from the host editor's selection listener, cards should include a copy button or floating quote button (copying selected text with `> ` markdown prefix to clipboard with `preventScroll: true` for easy <kbd>Cmd</kbd>+<kbd>V</kbd> pasting).
-   - **Respect the 500px Viewport Limit:** Keep cards under `450px` tall so no internal scrollbar appears. If an answer has multiple sections (e.g., Analysis + Action Items), split into 2 compact `<agent-embed>` cards sequentially instead of spilling raw text into chat.
+   - **Strict 400px Height Ceiling (Prevent 500px Iframe Overflow & Clipped Borders):**
+     - Antigravity hard-caps inline `<agent-embed>` viewport height at **500px**. If content exceeds ~450px, the bottom border gets clipped and an ugly internal scrollbar appears.
+     - **Rule of Thumb (Max 3 Items / 120 Words per Card):** Persian/Arabic prose at 15px with `1.9` line-height takes ~80–90px per detailed item.
+     - **Mandatory Splitting for 4+ Items:** Whenever an answer has 4 or more detailed items or extensive explanations, **MANDATORILY SPLIT into 2 sequential `<agent-embed>` cards** (e.g. Card 1 for Items 1–3, Card 2 for Items 4–5 + Next Steps) so every card stays comfortably under 350px tall, 100% scrollbar-free, with fully visible top and bottom borders.
 
 3. **System Artifact Cards (`ArtifactMetadata.Summary`):**
    - Antigravity's UI renders `UserFacing: true` Artifact Summary Cards in a strictly LTR, left-aligned container where Persian/Arabic mixed with English parentheses/acronyms becomes scrambled.

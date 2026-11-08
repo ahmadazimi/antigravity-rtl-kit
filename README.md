@@ -177,6 +177,9 @@ Antigravity's system artifact card drawer (the collapsible card at the bottom of
 ### How do I quote text from an RTL card?
 Because `<agent-embed>` renders inside a sandboxed iframe, the host editor's selection listener cannot directly capture text selected inside the card. Our inline boilerplates include an interactive floating **💬 Quote button**: simply highlight any word or sentence inside the card, click Quote, and press <kbd>Cmd</kbd>+<kbd>V</kbd> (or <kbd>Ctrl</kbd>+<kbd>V</kbd>) in the chat textarea to quote it with standard `> ` Markdown formatting with zero scroll jumps.
 
+### Why do large cards get an internal scrollbar or clipped bottom borders?
+Antigravity imposes a strict 500px maximum height on inline `<agent-embed>` iframes. If a response contains 4–5 long bullet points, the card height exceeds 500px, cutting off the bottom border and creating an internal scrollbar. The rule solves this with a **Max 3-Item Splitting Strategy**: whenever a list has 4+ detailed items, it is split into 2 compact `<agent-embed>` cards sequentially, combined with `pb-6` bottom padding on `<body>`, ensuring 100% visible borders and zero scrollbars.
+
 ### Are external CDNs allowed?
 No. Antigravity enforces strict CSP blocking of `fonts.googleapis.com` or arbitrary CDN scripts. This kit only uses the pre-approved Tailwind CDN (`https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js`) and relies entirely on local system font stacks.
 
