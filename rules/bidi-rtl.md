@@ -1,30 +1,41 @@
 ---
 trigger: always_on
-description: "Always display Persian (Farsi) and Arabic text inside Right-to-Left (RTL) boxes in chat and artifacts with Vazirmatn typography and readable 15px sizing, and never put Persian or Arabic text in LTR-only ArtifactMetadata.Summary cards."
+description: "Always display Persian (Farsi) and Arabic text inside Right-to-Left (RTL) boxes in chat and artifacts with Vazirmatn typography and readable 15px sizing, and never put Persian or Arabic text in LTR-only ArtifactMetadata.Summary cards or raw chat markdown."
 ---
 
 # Bidirectional (BiDi) Right-to-Left (RTL) Display Rule (Persian & Arabic)
 
-Whenever generating **Persian (Farsi)** or **Arabic** content for the user, **always display it inside Right-to-Left (RTL) boxes** rather than plain left-aligned (LTR) Markdown text:
+Whenever generating **Persian (Farsi)** or **Arabic** content for the user, **always display 100% of it inside Right-to-Left (RTL) boxes** rather than plain left-aligned (LTR) Markdown chat text:
 
-1. **Inline Chat Responses (`generative_ui` RTL Boxes):**
-   - Antigravity's default Markdown chat container is LTR, which makes Persian and Arabic prose (especially mixed with English technical terms) left-aligned and hard to read.
-   - Render RTL chat content using self-contained HTML card widgets saved in `<appDataDir>/brain/<conversation-id>/` (`UserFacing: false` for inline chat cards so they do not spawn extra LTR Artifact Cards at the bottom of the message) and embedded inline via `<agent-embed src="file:///<artifact_path>/<name>.html"></agent-embed>`.
-   - **Typography & Sizing (Crucial for RTL Readability):**
-     - Always declare:
-       `<style>body, .fa-text, .ar-text { font-family: "Vazirmatn", "Noto Sans Arabic", "Segoe UI", Tahoma, system-ui, -apple-system, sans-serif; } .ltr-pill { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; direction: ltr; unicode-bidi: isolate; }</style>`.
-       Never put `Geeza Pro` ahead of `Vazirmatn` or `Tahoma`.
-     - **Never use `text-xs` (`12px`) for Persian or Arabic prose or lists.** Use **`text-[15px] leading-[1.9]`** (`15px` with generous line height) for main paragraphs and bullet items, **`text-[14px] leading-[1.8]`** (`text-sm`) for secondary/helper descriptions, and **`text-[17px]`–`text-lg`** for card headers.
-     - **High-Contrast Text Color (Crucial for Dark & Light Themes):** Never use `text-[var(--muted-foreground)]` for main paragraphs, list items, or table cells—it renders too dim/gray on dark backgrounds. Always use **`text-[var(--foreground)]`** for all readable prose, lists, and table content, reserving `--muted-foreground` strictly for tiny metadata tags or subtitles if needed.
-   - Structure each HTML widget with `<html lang="fa" dir="rtl">` (or `<html lang="ar" dir="rtl">` for Arabic), include `<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>`, use `<body class="bg-transparent text-[var(--foreground)] antialiased p-2">`, and wrap content in `<div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">`.
-   - Wrap inline English technical terms, paths, and slash commands in `<span dir="ltr" class="ltr-pill inline-block text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">...</span>` so bidirectional text never scrambles sentence order.
-   - **Respect the 500px Inline Viewport Limit:** Because `15px` RTL text takes slightly more vertical space, split multi-part answers into 2–3 compact `<agent-embed>` cards (each comfortably under `450px` tall; never use `100vh`/`h-screen`) so none require internal scrolling.
-   - Place clickable `[filename](file:///...)` Markdown file chips directly in the chat outside `<agent-embed>` when referencing workspace files, since links inside iframes cannot open IDE tabs.
+1. **Strict Prohibition: Zero Raw Persian/Arabic in Plain Chat Markdown:**
+   - **CRITICAL:** **NEVER output ANY Persian or Arabic prose, headings, introductions, bullet points, tips, or commentary as plain Markdown in the chat.**
+   - Antigravity's chat container is strictly Left-to-Right (LTR). Any Persian or Arabic text written directly in chat will render left-aligned, reversed, and scrambled with broken punctuation and flipped colons.
+   - **Every single Persian or Arabic sentence** (including conversational intros, audits, tips, summaries, next steps, and explanations) **MUST reside inside self-contained `<agent-embed>` HTML cards**.
+   - The outer chat message MUST only contain:
+     1. `<agent-embed src="file:///<artifact_path>/<name>.html"></agent-embed>`
+     2. (Optional) Bare English-only file links at the bottom (e.g. `### Referenced Files\n- [filename](file:///...)`). **Never write Persian/Arabic descriptions or labels beside these links in outer chat.**
 
-2. **System Artifact Cards (`ArtifactMetadata.Summary`):**
+2. **Inline Chat Card Specs (`generative_ui`):**
+   - Save cards in `<appDataDir>/brain/<conversation-id>/<name>.html` with `UserFacing: false` (to prevent duplicate LTR Artifact Drawer cards).
+   - Structure each HTML widget with `<html lang="fa" dir="rtl">` (or `<html lang="ar" dir="rtl">` for Arabic).
+   - Script: `<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>`
+   - **Typography & Font Stack (Local & CSP-safe):**
+     `<style>body, .fa-text, .ar-text { font-family: "Vazirmatn", "Noto Sans Arabic", "Segoe UI", Tahoma, system-ui, -apple-system, sans-serif; } .ltr-pill { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; direction: ltr; unicode-bidi: isolate; display: inline-block; }</style>`
+     Never put `Geeza Pro` ahead of `Vazirmatn` or `Tahoma`.
+   - **Font Sizing & High Contrast (Dark & Light Themes):**
+     - Never use `text-xs` (`12px`) for Persian/Arabic prose.
+     - Body & list items: `text-[15px] leading-[1.9]`.
+     - Secondary helper text: `text-[14px] leading-[1.8]`.
+     - Card headers: `text-[17px]`–`text-lg` font-bold.
+     - Text color: strictly `text-[var(--foreground)]`. Never use `text-[var(--muted-foreground)]` for readable prose or lists.
+   - **Container:** `<div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">`
+   - **BiDi Token Isolation:** Wrap inline English technical terms, paths, method names, and slash commands in `<span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">...</span>`.
+   - **Respect the 500px Viewport Limit:** Keep cards under `450px` tall so no internal scrollbar appears. If an answer has multiple sections (e.g., Analysis + Action Items), split into 2 compact `<agent-embed>` cards sequentially instead of spilling raw text into chat.
+
+3. **System Artifact Cards (`ArtifactMetadata.Summary`):**
    - Antigravity's UI renders `UserFacing: true` Artifact Summary Cards in a strictly LTR, left-aligned container where Persian/Arabic mixed with English parentheses/acronyms becomes scrambled.
    - Therefore, **always write `ArtifactMetadata.Summary` in clear, concise English** (never mixed Persian or Arabic) for `UserFacing: true` artifacts, and do **not** mark duplicate RTL `.md` files in the brain directory as `UserFacing: true` when a standalone RTL `.html` artifact is already provided.
 
-3. **Long-Form RTL Reports & Artifacts:**
+4. **Long-Form RTL Reports & Artifacts:**
    - Always generate a standalone `.html` artifact (`<html lang="fa" dir="rtl">` or `<html lang="ar" dir="rtl">`, `bg-[var(--background)]`, `Vazirmatn` font stack, `15px` body / `14px` tables, `UserFacing: true`, with English `ArtifactMetadata.Summary`) for long reports, tables, and diagrams so the side-pane renders in full native RTL.
    - For repository `.md` files written in Persian or Arabic, wrap the document or RTL sections in `<div dir="rtl">` (with blank lines after `<div dir="rtl">` and before `</div>`) for Markdown preview compatibility.
