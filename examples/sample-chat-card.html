@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نمونه کارت چت راست‌به‌چپ</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body, .fa-text {
+      font-family: "Vazirmatn", "Vazir", Tahoma, system-ui, -apple-system, sans-serif;
+    }
+    .ltr-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="bg-transparent text-[var(--foreground)] antialiased p-2">
+  <div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">
+    
+    <!-- Header with badge -->
+    <div class="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border)]">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+        <h3 class="text-[17px] font-bold text-[var(--foreground)] m-0">بررسی و همگام‌سازی پایگاه‌داده</h3>
+      </div>
+      <span class="text-[12px] font-medium px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">آماده بهره‌برداری</span>
+    </div>
+
+    <!-- Description Paragraph with mixed technical terms -->
+    <p class="mb-3 text-[15px] text-[var(--foreground)] leading-[1.9]">
+      فرایند مایگریشن اسکیمای دیتابیس در شاخه
+      <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">feat/user-auth</span>
+      با موفقیت تکمیل شد. اتصال به کلاستر
+      <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">PostgreSQL 16</span>
+      از طریق سرویس
+      <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">Neon DB</span>
+      برقرار است.
+    </p>
+
+    <!-- Highlights Checklist -->
+    <div class="bg-[var(--muted)]/40 rounded-lg p-3.5 mb-3 border border-[var(--border)]/60">
+      <h4 class="text-[14px] font-semibold text-[var(--foreground)] mb-2">اقدامات انجام‌شده:</h4>
+      <ul class="space-y-1.5 pr-4 list-disc text-[14px] leading-[1.8] text-[var(--foreground)] marker:text-emerald-500">
+        <li>ایجاد جدول کاربری <span dir="ltr" class="ltr-pill text-[12px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">auth_users</span> همراه با کلید اصلی <span dir="ltr" class="ltr-pill text-[12px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">UUID v4</span></li>
+        <li>تنظیم متغیر محیطی <span dir="ltr" class="ltr-pill text-[12px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">DATABASE_URL</span> در فایل محلی</li>
+        <li>تست کوئری با زمان تاخیر کمتر از <span dir="ltr" class="ltr-pill text-[12px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">45ms</span></li>
+      </ul>
+    </div>
+
+    <!-- Footer with metadata -->
+    <div class="pt-2 text-[13px] text-[var(--muted-foreground)] border-t border-[var(--border)] flex items-center justify-between">
+      <span>محیط اجرایی: <span class="text-[var(--foreground)] font-medium">توسعه محلی (Localhost)</span></span>
+      <span dir="ltr" class="ltr-pill text-[11px] px-1.5 py-0.5 rounded bg-[var(--muted)] text-[var(--muted-foreground)]">Antigravity 2.0</span>
+    </div>
+
+  </div>
+</body>
+</html>

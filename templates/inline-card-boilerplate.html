@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity RTL Inline Card Template</title>
+  <!-- Only approved CSP CDN for Antigravity Generative UI -->
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body, .fa-text {
+      font-family: "Vazirmatn", "Vazir", Tahoma, system-ui, -apple-system, sans-serif;
+    }
+    .ltr-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="bg-transparent text-[var(--foreground)] antialiased p-2">
+  <!-- Card Container: fits comfortably within Antigravity's 500px inline iframe viewport without scrollbars -->
+  <div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">
+    
+    <!-- Header -->
+    <div class="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border)]">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+        <h3 class="text-[17px] font-semibold text-[var(--foreground)] m-0">عنوان کارت پاسخ</h3>
+      </div>
+      <span class="text-[12px] text-[var(--muted-foreground)] px-2 py-0.5 rounded bg-[var(--muted)]">وضعیت: موفق</span>
+    </div>
+
+    <!-- Main Content -->
+    <p class="mb-3 text-[15px] text-[var(--foreground)] leading-[1.9]">
+      متن اصلی پیام به زبان فارسی با فونت باکیفیت و خوانا. عبارات انگلیسی یا کدهای فنی مانند
+      <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">src/main.ts</span>
+      یا اصطلاحاتی چون
+      <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">API Endpoint</span>
+      به‌صورت کامل ایزوله شده و ترتیب جملات را برهم نمی‌زنند.
+    </p>
+
+    <!-- Checklist / Action Items -->
+    <ul class="space-y-2 mb-3 pr-4 list-disc text-[15px] text-[var(--foreground)] marker:text-emerald-500">
+      <li>بررسی تنظیمات و پارامترهای ارسالی در <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">config.json</span></li>
+      <li>اجرای موفقیت‌آمیز تست‌های اعتبارسنجی واحد</li>
+    </ul>
+
+    <!-- Footer Note -->
+    <div class="pt-2 text-[13px] text-[var(--muted-foreground)] border-t border-[var(--border)] flex items-center justify-between">
+      <span>تولید شده توسط دستیار هوشمند</span>
+      <span dir="ltr" class="ltr-pill text-[11px] px-1.5 py-0.5 rounded bg-[var(--muted)] text-[var(--muted-foreground)]">Antigravity RTL</span>
+    </div>
+
+  </div>
+</body>
+</html>

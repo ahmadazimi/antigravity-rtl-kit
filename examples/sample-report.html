@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نمونه گزارش عملکرد و اعتبارسنجی سرویس‌ها</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body, .fa-text {
+      font-family: "Vazirmatn", "Vazir", Tahoma, system-ui, -apple-system, sans-serif;
+    }
+    .ltr-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+    }
+    pre, code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      direction: ltr;
+      text-align: left;
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen p-4 sm:p-8">
+  <main class="max-w-4xl mx-auto space-y-6 text-right">
+
+    <!-- Header Section -->
+    <header class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              تأییدیه تست نهایی
+            </span>
+            <span class="text-[12px] text-[var(--muted-foreground)]">نسخه ۱.۰.۰</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-[var(--foreground)]">گزارش ارزیابی زیرساخت و مهاجرت پایگاه داده</h1>
+        </div>
+        <div class="text-left" dir="ltr">
+          <span class="text-[12px] text-[var(--muted-foreground)] block">Last Verified</span>
+          <span class="text-[14px] font-mono font-medium text-[var(--foreground)]">2026-11-08 09:30 UTC</span>
+        </div>
+      </div>
+      <p class="text-[15px] leading-[1.9] text-[var(--foreground)]">
+        ارزیابی نهایی کارایی زیرساخت در لایه‌های مختلف پردازش، کش و پایگاه داده. تست‌های بار با موفقیت در شرایط شبیه‌سازی ترافیک بالا انجام پذیرفت.
+      </p>
+    </header>
+
+    <!-- Metrics Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+        <span class="text-[13px] text-[var(--muted-foreground)]">مجموع درخواست‌ها</span>
+        <div class="text-2xl font-bold text-[var(--foreground)] mt-1" dir="ltr">1.25M</div>
+        <p class="text-[12px] text-emerald-500 mt-1">▲ رشد ۱۵٪ نسبت به دیروز</p>
+      </div>
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+        <span class="text-[13px] text-[var(--muted-foreground)]">پایداری سرور</span>
+        <div class="text-2xl font-bold text-emerald-500 mt-1" dir="ltr">99.99%</div>
+        <p class="text-[12px] text-[var(--muted-foreground)] mt-1">بدون داون‌تایم</p>
+      </div>
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+        <span class="text-[13px] text-[var(--muted-foreground)]">میزان خطای ۵xx</span>
+        <div class="text-2xl font-bold text-emerald-500 mt-1" dir="ltr">0.001%</div>
+        <p class="text-[12px] text-[var(--muted-foreground)] mt-1">زیر حد بحرانی</p>
+      </div>
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
+        <span class="text-[13px] text-[var(--muted-foreground)]">زمان لود صفحه</span>
+        <div class="text-2xl font-bold text-blue-500 mt-1" dir="ltr">0.42 s</div>
+        <p class="text-[12px] text-[var(--muted-foreground)] mt-1">شاخص First Contentful</p>
+      </div>
+    </section>
+
+    <!-- Data Table -->
+    <section class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
+          <span class="w-2.5 h-5 rounded-full bg-blue-500 inline-block"></span>
+          جدول تفکیکی ارزیابی اندپوینت‌ها
+        </h2>
+        <span class="text-[13px] text-[var(--muted-foreground)]">تعداد: ۳ اندپوینت اصلی</span>
+      </div>
+
+      <div class="overflow-x-auto border border-[var(--border)] rounded-xl">
+        <table class="w-full text-right text-[14px] leading-[1.8]">
+          <thead class="bg-[var(--muted)] text-[var(--foreground)] border-b border-[var(--border)] font-semibold">
+            <tr>
+              <th class="p-3.5">مسیر اندپوینت</th>
+              <th class="p-3.5">متد</th>
+              <th class="p-3.5">نرخ پاسخ (P99)</th>
+              <th class="p-3.5">کش</th>
+              <th class="p-3.5">وضعیت تست</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border)] text-[var(--foreground)]">
+            <tr class="hover:bg-[var(--muted)]/50 transition-colors">
+              <td class="p-3.5"><span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)]">/api/v1/auth/login</span></td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-blue-500/10 text-blue-500 font-mono font-semibold">POST</span></td>
+              <td class="p-3.5 font-mono" dir="ltr">68 ms</td>
+              <td class="p-3.5 text-amber-500 font-medium">Bypass</td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-emerald-500/10 text-emerald-500 font-medium">پاس شده</span></td>
+            </tr>
+            <tr class="hover:bg-[var(--muted)]/50 transition-colors">
+              <td class="p-3.5"><span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)]">/api/v1/user/profile</span></td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-emerald-500/10 text-emerald-500 font-mono font-semibold">GET</span></td>
+              <td class="p-3.5 font-mono" dir="ltr">18 ms</td>
+              <td class="p-3.5 text-emerald-500 font-medium">Hit (Redis)</td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-emerald-500/10 text-emerald-500 font-medium">پاس شده</span></td>
+            </tr>
+            <tr class="hover:bg-[var(--muted)]/50 transition-colors">
+              <td class="p-3.5"><span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)]">/api/v1/billing/invoices</span></td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-emerald-500/10 text-emerald-500 font-mono font-semibold">GET</span></td>
+              <td class="p-3.5 font-mono" dir="ltr">92 ms</td>
+              <td class="p-3.5 text-blue-500 font-medium">Cache Stale</td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-emerald-500/10 text-emerald-500 font-medium">پاس شده</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Code Block Demonstration -->
+    <section class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-3">
+      <h3 class="text-[17px] font-bold text-[var(--foreground)]">دستور راه‌اندازی و اجرای مایگریشن</h3>
+      <p class="text-[15px] leading-[1.9] text-[var(--foreground)]">
+        جهت اجرای مجدد یا همگام‌سازی در محیط استیجینگ از دستور زیر استفاده کنید:
+      </p>
+      <div class="bg-[var(--muted)] border border-[var(--border)] rounded-xl p-4 overflow-x-auto" dir="ltr">
+        <code class="text-[13px] text-[var(--foreground)] font-mono">
+          pnpm run db:migrate --schema=public --dry-run=false
+        </code>
+      </div>
+    </section>
+
+    <!-- Info Note -->
+    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 flex items-start gap-3">
+      <div class="w-5 h-5 mt-0.5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[12px] font-bold shrink-0">✓</div>
+      <div>
+        <h4 class="text-[15px] font-semibold text-emerald-500 m-0">تأیید نهایی</h4>
+        <p class="text-[14px] leading-[1.8] text-[var(--foreground)] mt-1 m-0">
+          تمامی ماژول‌ها با استانداردهای کارایی و امنیت هماهنگ بوده و سیستم آماده انتقال به محیط پروداکشن است.
+        </p>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

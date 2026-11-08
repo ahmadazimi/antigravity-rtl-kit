@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>گزارش کامل تحلیل و استقرار</title>
+  <!-- Approved CSP CDN for Antigravity Generative UI -->
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body, .fa-text {
+      font-family: "Vazirmatn", "Vazir", Tahoma, system-ui, -apple-system, sans-serif;
+    }
+    .ltr-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+    }
+    pre, code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      direction: ltr;
+      text-align: left;
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen p-4 sm:p-8">
+  <main class="max-w-4xl mx-auto space-y-6 text-right">
+    
+    <!-- Hero / Header Section -->
+    <header class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[13px] font-medium bg-blue-500/10 text-blue-500 border border-blue-500/20">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            گزارش رسمی و جامع
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mt-2">عنوان گزارش جامع سیستم</h1>
+        </div>
+        <div class="text-left" dir="ltr">
+          <span class="text-[12px] text-[var(--muted-foreground)] block">تاریخ ایجاد</span>
+          <span class="text-[14px] font-mono font-medium text-[var(--foreground)]">2026-11-08</span>
+        </div>
+      </div>
+      <p class="text-[15px] leading-[1.9] text-[var(--foreground)]">
+        این قالب اختصاصی برای نمایش گزارش‌های مفصل، مستندات معماری و تحلیل داده‌ها در ساید‌پین اختصاصی
+        <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">Antigravity Artifact</span>
+        طراحی شده است.
+      </p>
+    </header>
+
+    <!-- Key Metrics Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm">
+        <span class="text-[13px] text-[var(--muted-foreground)]">نرخ موفقیت</span>
+        <div class="text-2xl font-bold text-emerald-500 mt-1" dir="ltr">99.8%</div>
+        <p class="text-[13px] text-[var(--muted-foreground)] mt-1">تست‌های نهایی واحد و یکپارچگی</p>
+      </div>
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm">
+        <span class="text-[13px] text-[var(--muted-foreground)]">زمان پاسخ میانگین</span>
+        <div class="text-2xl font-bold text-blue-500 mt-1" dir="ltr">142 ms</div>
+        <p class="text-[13px] text-[var(--muted-foreground)] mt-1">در بار کاری استاندارد</p>
+      </div>
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm">
+        <span class="text-[13px] text-[var(--muted-foreground)]">هشدارها و خطاها</span>
+        <div class="text-2xl font-bold text-[var(--foreground)] mt-1" dir="ltr">0</div>
+        <p class="text-[13px] text-[var(--muted-foreground)] mt-1">بدون مسدودسازی امنیتی</p>
+      </div>
+    </section>
+
+    <!-- Detailed Section with High-Contrast Table -->
+    <section class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+      <h2 class="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
+        <span class="w-2 h-5 rounded bg-blue-500"></span>
+        بررسی وضعیت ماژول‌ها و سرویس‌ها
+      </h2>
+      <p class="text-[15px] leading-[1.9] text-[var(--foreground)]">
+        جدول زیر وضعیت تمامی کامپوننت‌های بررسی شده را نشان می‌دهد. ارقام و شناسه‌ها به صورت ایزوله نمایش داده شده‌اند.
+      </p>
+
+      <div class="overflow-x-auto border border-[var(--border)] rounded-xl">
+        <table class="w-full text-right text-[14px] leading-[1.8]">
+          <thead class="bg-[var(--muted)] text-[var(--foreground)] border-b border-[var(--border)] font-semibold">
+            <tr>
+              <th class="p-3.5">نام ماژول</th>
+              <th class="p-3.5">شناسه سرویس</th>
+              <th class="p-3.5">وضعیت</th>
+              <th class="p-3.5">توضیحات</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border)] text-[var(--foreground)]">
+            <tr class="hover:bg-[var(--muted)]/50 transition-colors">
+              <td class="p-3.5 font-medium">موتور تحلیل داده</td>
+              <td class="p-3.5"><span dir="ltr" class="ltr-pill text-[12px] px-1.5 py-0.5 rounded bg-[var(--secondary)]">analytics-core</span></td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-emerald-500/10 text-emerald-500 font-medium">فعال</span></td>
+              <td class="p-3.5 text-[14px]">پردازش رویدادهای بی‌درنگ بدون وقفه</td>
+            </tr>
+            <tr class="hover:bg-[var(--muted)]/50 transition-colors">
+              <td class="p-3.5 font-medium">دروازه احراز هویت</td>
+              <td class="p-3.5"><span dir="ltr" class="ltr-pill text-[12px] px-1.5 py-0.5 rounded bg-[var(--secondary)]">auth-gateway</span></td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-emerald-500/10 text-emerald-500 font-medium">فعال</span></td>
+              <td class="p-3.5 text-[14px]">همگام‌سازی توکن‌های نشست کاربر</td>
+            </tr>
+            <tr class="hover:bg-[var(--muted)]/50 transition-colors">
+              <td class="p-3.5 font-medium">سرویس کش موقت</td>
+              <td class="p-3.5"><span dir="ltr" class="ltr-pill text-[12px] px-1.5 py-0.5 rounded bg-[var(--secondary)]">redis-cluster</span></td>
+              <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[12px] bg-blue-500/10 text-blue-500 font-medium">آماده‌باش</span></td>
+              <td class="p-3.5 text-[14px]">استفاده از حافظه زیر ۵۰٪ ظرفیت</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Alert / Notice Box -->
+    <div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 flex items-start gap-3 text-right">
+      <div class="w-5 h-5 mt-0.5 rounded-full bg-blue-500 text-white flex items-center justify-center text-[12px] font-bold shrink-0">!</div>
+      <div>
+        <h4 class="text-[15px] font-semibold text-blue-500 m-0">نکته مهم امنیتی</h4>
+        <p class="text-[14px] leading-[1.8] text-[var(--foreground)] mt-1 m-0">
+          تمامی متغیرهای محیطی در فایل <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)]">.env.production</span> رمزنگاری شده و نیازمند کلید اختصاصی برای دیپلوی هستند.
+        </p>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>
