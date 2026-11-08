@@ -39,14 +39,13 @@
     <!-- Header -->
     <div class="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border)]">
       <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+        <span class="px-2 py-0.5 text-[12px] font-bold rounded bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">✓ انجام شد</span>
         <h3 class="text-[17px] font-semibold text-[var(--foreground)] m-0">عنوان کارت پاسخ</h3>
       </div>
       <div class="flex items-center gap-2">
         <button onclick="copyCardContent()" title="کپی متن پیام" class="px-2 py-0.5 text-[12px] rounded border border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--muted)] transition-colors cursor-pointer flex items-center gap-1">
           <span>📋 کپی</span>
         </button>
-        <span class="text-[12px] text-[var(--muted-foreground)] px-2 py-0.5 rounded bg-[var(--muted)]">وضعیت: موفق</span>
       </div>
     </div>
 
@@ -61,9 +60,19 @@
       </p>
 
       <!-- Checklist / Action Items -->
-      <ul class="space-y-2 mb-3 pr-4 list-disc text-[15px] text-[var(--foreground)] marker:text-emerald-500">
-        <li>بررسی تنظیمات و پارامترهای ارسالی در <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">config.json</span></li>
-        <li>اجرای موفقیت‌آمیز تست‌های اعتبارسنجی واحد</li>
+      <ul class="space-y-2 mb-3 pr-2 list-none text-[15px] text-[var(--foreground)]">
+        <li>
+          <span class="font-bold text-emerald-500">۱. گام اول:</span>
+          بررسی تنظیمات و پارامترهای ارسالی در <span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">config.json</span>
+        </li>
+        <li>
+          <span class="font-bold text-blue-500">۲. گام دوم:</span>
+          اجرای موفقیت‌آمیز تست‌های اعتبارسنجی واحد و یکپارچگی کدها
+        </li>
+        <li>
+          <span class="font-bold text-amber-500">۳. نکته مهم:</span>
+          اطمینان از سازگاری تمام متغیرها با محیط پروداکشن
+        </li>
       </ul>
     </div>
 

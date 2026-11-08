@@ -28,6 +28,21 @@ Whenever generating **Persian (Farsi)** or **Arabic** content for the user, **al
      - Secondary helper text: `text-[14px] leading-[1.8]`.
      - Card headers: `text-[17px]`–`text-lg` font-bold.
      - Text color: strictly `text-[var(--foreground)]`. Never use `text-[var(--muted-foreground)]` for readable prose or lists.
+   - **Visual Accents & Status Badges (Anti-Monotony Rule):**
+     Never generate plain, monochromatic gray-on-gray cards. Always apply lively semantic color accents:
+     - **Header Status Badge (Mandatory):** Beside the header title, include a colored badge:
+       - Success / Done: `<span class="px-2 py-0.5 text-[12px] font-bold rounded bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">✓ تایید / موفق</span>`
+       - Info / Progress: `<span class="px-2 py-0.5 text-[12px] font-bold rounded bg-blue-500/15 text-blue-500 border border-blue-500/30">ℹ️ در حال اجرا</span>`
+       - Warning / Notice: `<span class="px-2 py-0.5 text-[12px] font-bold rounded bg-amber-500/15 text-amber-500 border border-amber-500/30">⚠️ نیازمند بررسی</span>`
+       - Error / Blocker: `<span class="px-2 py-0.5 text-[12px] font-bold rounded bg-red-500/15 text-red-500 border border-red-500/30">⛔ خطای بحرانی</span>`
+       - Architecture / Review: `<span class="px-2 py-0.5 text-[12px] font-bold rounded bg-purple-500/15 text-purple-500 border border-purple-500/30">🟣 بررسی معماری</span>`
+     - **Color-Coded Item Prefixes:** Never use plain black/white bullets for lists or numbered steps. Always color-code the number and bold title:
+       - Step 1: `<span class="font-bold text-emerald-500">۱. گام اول:</span>`
+       - Step 2: `<span class="font-bold text-blue-500">۲. گام دوم:</span>`
+       - Step 3: `<span class="font-bold text-amber-500">۳. گام سوم:</span>`
+       - Step 4: `<span class="font-bold text-purple-500">۴. گام چهارم:</span>`
+     - **Footer Context Bar (Recommended):** Add a subtle footer with context/meta info:
+       `<div class="pt-2 text-[12px] text-[var(--muted-foreground)] border-t border-[var(--border)] flex items-center justify-between"><span>شاخه: ...</span><span class="text-emerald-400 font-medium">✓ وضعیت</span></div>`
    - **Container & Padding:** Always use `<body class="bg-transparent text-[var(--foreground)] antialiased p-2 pb-6">` with bottom padding `pb-6` (to prevent clipping the bottom border). Wrap content in `<div dir="rtl" class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-xl p-5 shadow-sm text-right text-[15px] leading-[1.9]">`.
    - **BiDi Token Isolation:** Wrap inline English technical terms, paths, method names, and slash commands in `<span dir="ltr" class="ltr-pill text-[13px] px-1.5 py-0.5 rounded bg-[var(--secondary)] text-[var(--secondary-foreground)] font-mono">...</span>`.
    - **Interactive Quote & Copy Helper (Mandatory Implementation):**
